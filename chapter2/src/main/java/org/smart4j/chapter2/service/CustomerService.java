@@ -1,13 +1,10 @@
 package org.smart4j.chapter2.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.smart4j.chapter2.helper.DataBaseHelper;
 import org.smart4j.chapter2.pojo.entity.Customer;
-import org.smart4j.chapter2.util.PropsUtil;
 
-import java.sql.*;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @PackageName: org.smart4j.chapter2.service
@@ -16,8 +13,6 @@ import java.util.*;
  * @Description 提供客户数据服务
  **/
 public class CustomerService {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
-
 
     /**
      * 获取客户列表
@@ -26,11 +21,7 @@ public class CustomerService {
      */
     public List<Customer> getCustomerList() {
         String sql = "SELECT * FROM customer";
-        try {
-            return DataBaseHelper.queryEntityList(Customer.class,sql);
-        } finally {
-            DataBaseHelper.closeConnection();
-        }
+        return DataBaseHelper.queryEntityList(Customer.class,sql);
     }
 
     /**
@@ -51,7 +42,7 @@ public class CustomerService {
      * @return boolean
      */
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        return false;
+       return DataBaseHelper.insertEntity(Customer.class,fieldMap);
     }
 
     /**
@@ -62,7 +53,7 @@ public class CustomerService {
      * @return boolean
      */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        return false;
+        return DataBaseHelper.updateEntity(Customer.class,id,fieldMap);
     }
 
     /**
@@ -72,6 +63,6 @@ public class CustomerService {
      * @return boolean
      */
     public boolean deleteCustomer(long id) {
-        return false;
+        return DataBaseHelper.dleteEntity(Customer.class, id);
     }
 }

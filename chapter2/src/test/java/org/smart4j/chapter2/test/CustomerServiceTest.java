@@ -8,6 +8,7 @@ import org.smart4j.chapter2.service.CustomerService;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * @PackageName: org.smart4j.chapter2.test
@@ -65,5 +66,29 @@ public class CustomerServiceTest {
         long id = 1;
         boolean result = customerService.deleteCustomer(id);
         Assert.assertTrue(result);
+    }
+
+    public <T> String test1(Supplier<T> supplier){
+        T t = supplier.get();
+        return t.toString();
+    }
+
+    @Test
+    public void test2(){
+        System.out.println(test1(Customer::new));
+    }
+
+    public <T> String test3(Class<T> tClass){
+        try {
+            return Class.forName(tClass.getName()).toString();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    @Test
+    public void test4(){
+        System.out.println(test1(Customer::new));
     }
 }
