@@ -1,6 +1,4 @@
 
-m
-=chapter1/src/main/java/org/smart4j/chapter1/HelloServlet.java,d\d\ddaf69d1474f3ea836bc72830a1db419dfee2429
 p
 @chapter2/src/main/java/org/smart4j/chapter2/util/StringUtil.java,5\b\5bdbe4d297e179203354ae5e4c67799f92d053d2
 \
