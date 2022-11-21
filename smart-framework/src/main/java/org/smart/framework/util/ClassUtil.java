@@ -51,6 +51,22 @@ public final class ClassUtil {
     }
 
     /**
+     * 加载类
+     * @param className 类名
+     * @return Class<?>
+     */
+    public static Class<?> loadClass(String className){
+        Class<?> cls;
+        try {
+            cls = Class.forName(className,false,getClassLoader());
+        } catch (ClassNotFoundException e) {
+            logger.error("load class failure",e);
+            throw new RuntimeException(e);
+        }
+        return cls;
+    }
+
+    /**
      * 获取指定包名下的所有类
      * @param packageName
      * @return Set<Class<?>>
